@@ -1,4 +1,4 @@
-** Participantes do grupo: Gabriel Nhoncanse, Pedro Munhoz, João Alcaraz, Pedro Romão, Yasmin Vitória **
+**Participantes do grupo: Gabriel Nhoncanse, Pedro Munhoz, João Alcaraz, Pedro Romão, Yasmin Vitória**
 
 * A) Definição e treinamento do modelo e análise dos resultados com o Tensorboard
   * Treinamento do modelo
