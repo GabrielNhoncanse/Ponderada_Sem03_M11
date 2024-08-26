@@ -1,12 +1,23 @@
-**Participantes do grupo: Gabriel Nhoncanse, Pedro Munhoz, João Alcaraz, Pedro Romão, Yasmin Vitória**
+# NLU-com-Rede-Neural
 
-* A) Definição e treinamento do modelo e análise dos resultados com o Tensorboard
-  * Treinamento do modelo
-  * Embedding Layer e métricas de acurácia, recall e f1-score
-  * Histogramas
+Atividade realizada pelos alunos da primeira turma de ciência da computação do INTELI:
+* Gabriel Carneiro
+* Gabriel Nhoncanse
+* João Alcaraz
+* Pedro Munhoz
+* Pedro Romão
+* Yasmin Vitória Rocha
+
+<br>
+
+* A) Definição e treinamento do modelo e análise dos resultados com o Tensorboard  
+  * Treinamento do modelo  
+  * Embedding Layer e métricas de acurácia, recall e f1-score  
+  * Histogramas  
 * B) Comparação dos resultados obtidos com Word2vec
 
-1) **Definição e treinamento do modelo e análise dos resultados com o Tensorboard**
+
+## A) Definição e treinamento do modelo e análise dos resultados com o Tensorboard
 
 O primeiro notebook refere-se ao treinamento do NLU (Natural Language Understanding) utilizando a biblioteca TensorFlow e Tensorboard para monitorar o desempenho.
 
@@ -14,49 +25,51 @@ Na fase de pré-processamento, inicia-se com o carregamento e o processo de norm
 
 No primeiro notebook, o modelo é uma rede neural sequencial que utiliza Embedding Layer para mapear as palavras em vetores densos de dimensão fixa. No modelo são adicionadas duas camadas LSTM (Long Short-Term Memory), uma das quais retorna sequências. A arquitetura no final tem duas camadas densas, sendo a última com softmax como ativação para classificar. A compilação é feita com o otimizador Adam e a função de perda “sparce\_categorical\_crossentropy”, sendo monitorado com a métrica de acurácia “accuracy”.
 
-**Treinamento do modelo**
+**Treinamento do modelo**   
 O treinamento ocorre em 600 épocas utilizando a divisão dos dados de validação. O Tensorboard rastreia esse treinamento, o que permite a análise das métricas e ajustes de hiperparâmetros.
 
-**Embedding Layer e métricas de acurácia, recall e f1-score**
+**Embedding Layer e métricas de acurácia, recall e f1-score**  
 Após o treinamento, o modelo é avaliado no conjunto de testes. As métricas são:
 
-* Acurácia: mede a proporção de previsões corretas. A acurácia do modelo obtida foi de 41%;
-* Recall: mede a capacidade do modelo de encontrar todas as instâncias relevantes. No modelo o recall obtido foi de 41%;
+* Acurácia: mede a proporção de previsões corretas. A acurácia do modelo obtida foi de 41%;  
+* Recall: mede a capacidade do modelo de encontrar todas as instâncias relevantes. No modelo o recall obtido foi de 41%;  
 * F1-Score: é a medida harmônica entre precisão e recall, tendo uma medida equilibrada entre os dois. O F1-Score obtido foi de 40%S
 
-A imagem abaixo demonstra os histogramas relacionados ao bias(vieses) e embeddings.
+A imagem abaixo demonstra os histogramas relacionados ao bias(vieses) e embeddings.  
 Histograma de bias:
 
-* Variação dos bias: os gráficos mostram a distribuição dos valores de vieses ao longo das camadas do modelo, tanto para treinamento quanto para validação. Aqui pode-se perceber como o gráfico indica os valores de bias que mudam ao longo das iterações do treinamento do modelo
+* Variação dos bias: os gráficos mostram a distribuição dos valores de vieses ao longo das camadas do modelo, tanto para treinamento quanto para validação. Aqui pode-se perceber como o gráfico indica os valores de bias que mudam ao longo das iterações do treinamento do modelo  
 * Comparação de execuções: Existem vários runs do treinamento. Essas execuções representam diferentes rodagens com hiperparâmetros que ajudam a entender algum padrão específico que pode existir durante o treinamento.
 
 
-![][image1]
+![image](https://github.com/user-attachments/assets/c229ed81-c606-4ee6-a4a7-41ec2f6b99df)
+
 
 O primeiro gráfico (roxo) mostra uma distribuição dos bias em torno de uma faixa próxima de \-0,1 a 0,1, concentrando-se em valores próximos de zero. é possível observar a variação nos valores ao longo de cada iteração, isso indica que o modelo tenta ajustar seus parâmetros, principalmente nas camadas iniciais. Já o segundo gráfico (preto) varia numa faixa de valores entre \-0,11 a 0,07, sendo bem mais amplo, o que significa uma dispersão maior com picos de concentração em diferentes pontos. Essa maior dispersão determina uma exploração mais abrangente do modelo para ajustar os vieses e encontrar a melhor representação dos dados de entrada.
 
-**Histogramas**
-Histograma 1 (roxo): este histograma mostra a distribuição mais concentrada em torno de zero, com algumas variações. A concentração pode ser interpretada de forma com que a maioria dos pesos dos embeddings está em valores próximos de zero e com algumas dispersões, ou seja, indica que o modelo está aprendendo representações que tem variações mínimas ou indicar underfitting caso os embeddings não capturem adequadamente as diferenças das entradas.
-Histograma 2 (rosa): este histograma mostra uma distribuição mais uniforme, com pesos espalhados de forma constante em uma faixa de valores. Essa distribuição indica que o modelo não está aprendendo representações úteis ou que os embeddings estão sendo inicializados sem ajustes durante o treinamento. Isso normalmente ocorre nas primeiras etapas do treinamento, antes dos pesos se concentrarem em outros valores.
-Histograma 3 (preto): semelhante ao histograma 1, mas mais compacto, a maioria dos valores dos embeddings está próxima de zero, com menos dispersão em comparação com o primeiro gráfico. Aqui o modelo tem chances de estar convergindo para um estado em que os embeddings estão mais presentes em uma pequena faixa de valores.
-![][image2]
+**Histogramas**  
+Histograma 1 (roxo): este histograma mostra a distribuição mais concentrada em torno de zero, com algumas variações. A concentração pode ser interpretada de forma com que a maioria dos pesos dos embeddings está em valores próximos de zero e com algumas dispersões, ou seja, indica que o modelo está aprendendo representações que tem variações mínimas ou indicar underfitting caso os embeddings não capturem adequadamente as diferenças das entradas.  
+Histograma 2 (rosa): este histograma mostra uma distribuição mais uniforme, com pesos espalhados de forma constante em uma faixa de valores. Essa distribuição indica que o modelo não está aprendendo representações úteis ou que os embeddings estão sendo inicializados sem ajustes durante o treinamento. Isso normalmente ocorre nas primeiras etapas do treinamento, antes dos pesos se concentrarem em outros valores.  
+Histograma 3 (preto): semelhante ao histograma 1, mas mais compacto, a maioria dos valores dos embeddings está próxima de zero, com menos dispersão em comparação com o primeiro gráfico. Aqui o modelo tem chances de estar convergindo para um estado em que os embeddings estão mais presentes em uma pequena faixa de valores.   
+![image](https://github.com/user-attachments/assets/78d1595d-4195-4988-bf32-05c5d7dccf90)
 
 Comparando com outros histogramas, percebe-se uma diferença de distribuição e que cada execução pode ter impacto na aprendizagem dos embeddings.
 
-**B) Comparação dos resultados obtidos com Word2vec**
-No segundo notebook, o Word2Vec foi utilizado para criar embeddings das palavras, sendo uma alternativa diferente em comparação ao iso de camadas de embeddings já treinadas diretamente no modelo de rede neural como é visto no primeiro notebook.\]
+## B) Comparação dos resultados obtidos com Word2vec
+No segundo notebook, o Word2Vec foi utilizado para criar embeddings das palavras, sendo uma alternativa diferente em comparação ao iso de camadas de embeddings já treinadas diretamente no modelo de rede neural como é visto no primeiro notebook.
 
-Foram utilizadas arquiteturas como:
-Skip-Gram: tenta prever as palavras de contexto ao redor de uma palavra central. É útil quando há poucas ocorrências de palavras no conjunto de dados.
+Foram utilizadas arquiteturas como:  
+Skip-Gram: tenta prever as palavras de contexto ao redor de uma palavra central. É útil quando há poucas ocorrências de palavras no conjunto de dados.   
 CBOW (Continuous Bag of Words): tenta prever a palavra central com base no contexto ao redor dela. Geralmente é mais rápido e funciona bem com grandes conjuntos de dados.
 
-O Word2Vec permite a construção de embeddings pré-treinados que capturam contextos semânticos das palavras, sendo útil para entender o significado de palavras em diferentes contextos. Esses embeddings foram então utilizados em um modelo de LSTM para prever as intenções dos clientes. Aqui é válido lembrar que as intenções para serem capturadas são codificadas e os resultados após esse processo e treinamento do modelo foram obtidos foram os seguintes valores:
-Test Loss: 3.7;
+O Word2Vec permite a construção de embeddings pré-treinados que capturam contextos semânticos das palavras, sendo útil para entender o significado de palavras em diferentes contextos. Esses embeddings foram então utilizados em um modelo de LSTM para prever as intenções dos clientes. Aqui é válido lembrar que as intenções para serem capturadas são codificadas e os resultados após esse processo e treinamento do modelo foram obtidos foram os seguintes valores:  
+Test Loss: 3.7;  
 Test Accuracy: 0.445
 
-Com uso de métricas como:
-Precision', 'Recall', 'Accuracy', 'Support', 'F1-Score
-![][image3]
+Com uso de métricas como:  
+Precision', 'Recall', 'Accuracy', 'Support', 'F1-Score  
+![image](https://github.com/user-attachments/assets/bb1307b1-18e0-465f-a14c-7d3c81060046)
+
 
 No primeiro notebook, os embeddings foram aprendidos durante o treinamento do modelo e o Tensorboard serviu como meio de monitoramento do ajuste dos pesos e vieses durante esse processo. Já no segundo notebook os embeddings foram gerados usando o Word2Vec antes do treinamento do modelo que então foram utilizados diretamente como entradas para o modelo e foi possível visualizar os embeddings com o Embedding Projector, o Embedding Projector permite explorar em dimensões a estrutura semântica capturadas pelos embeddings. O uso do Word2Vec pareceu mais vantajoso ao capturar a semântica desde o início, visto que os embeddings são pré-treinados, resultando num desempenho melhor quando o objetivo é levar em consideração o significado contextual das palavras.
 
